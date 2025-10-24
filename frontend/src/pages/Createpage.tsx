@@ -10,10 +10,12 @@ import {
 import { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import { productService } from "../services/product.service.ts";
+import { useNavigate } from "react-router-dom";
 
 const { useCreateProduct } = productService();
 
 const Createpage = () => {
+  const navigate = useNavigate();
   const storeProduct = useCreateProduct();
   const [newProduct, setNewProduct] = useState({
     name: "",
@@ -37,6 +39,7 @@ const Createpage = () => {
             duration: 3000,
             isClosable: true,
           });
+          navigate("/");
         },
         onError: (error) => {
           toast({
