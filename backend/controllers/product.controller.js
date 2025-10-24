@@ -42,6 +42,9 @@ const updateProduct = async (req, res) => {
   if (!id) {
     return res.status(400).json({ success: false, message: "Missing Id" });
   }
+  if (!product.name || !product.price || !product.image) {
+    return res.status(400).json({ success: false, message: "Missing Field" });
+  }
 
   try {
     const updateProduct = await Product.findByIdAndUpdate(id, product, {
